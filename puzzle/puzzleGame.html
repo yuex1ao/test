@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>拼圖遊戲</title>
+	<style>
+		.container {
+			display: flex;
+			flex-wrap: wrap;
+			width: 450px;
+			height: 450px;
+			margin: 0 auto;
+		}
+		.container img {
+			width: 150px;
+			height: 150px;
+			object-fit: cover;
+			cursor: pointer;
+		}
+		.btn-container {
+			display: flex;
+			justify-content: center;
+			margin-top: 20px;
+		}
+		.btn {
+			padding: 10px 20px;
+			background-color: #4CAF50;
+			color: white;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<img src="splitImage/9.png" alt="9" onclick="swap(this)">
+		<img src="splitImage/8.png" alt="8" onclick="swap(this)">
+		<img src="splitImage/7.png" alt="7" onclick="swap(this)">
+		<img src="splitImage/6.png" alt="6" onclick="swap(this)">
+		<img src="splitImage/5.png" alt="5" onclick="swap(this)">
+		<img src="splitImage/4.png" alt="4" onclick="swap(this)">
+		<img src="splitImage/3.png" alt="3" onclick="swap(this)">
+		<img src="splitImage/2.png" alt="2" onclick="swap(this)">
+		<img src="splitImage/1.png" alt="1" onclick="swap(this)">
+	</div>
+	<div class="btn-container">
+		<button class="btn" onclick="shuffle()">開始</button>
+	</div>
+	<script>
+		let firstClick = null;
+		function swap(img) {
+			if (firstClick === null) {
+				firstClick = img;
+			} else {
+				let temp = img.src;
+				img.src = firstClick.src;
+				firstClick.src = temp;
+				firstClick = null;
+			}
+		}
+		function shuffle() {
+			let imgs = document.querySelectorAll('.container img');
+			for (let i = 0; i < imgs.length; i++) {
+				let j = Math.floor(Math.random() * imgs.length);
+				let temp = imgs[i].src;
+				imgs[i].src = imgs[j].src;
+				imgs[j].src = temp;
+			}
+		}
+	</script>
+</body>
+</html>
